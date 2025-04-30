@@ -1,34 +1,39 @@
 import {useState} from 'react';
 
+const INITIAL_INVESTMENT_FIELD_NAME = 'initialInvestment'
+const ANNUAL_INVESTMENT_FIELD_NAME = 'annualInvestment'
+const EXPECTED_RETURN_FIELD_NAME = 'expectedReturn'
+const DURATION_FIELD_NAME = 'duration'
+
 const INPUT_GROUPS = [
     [
         {
             label: 'Initial Investment',
-            fieldName: 'initialInvestment'
+            fieldName: INITIAL_INVESTMENT_FIELD_NAME
         },
         {
             label: 'Annual Investment',
-            fieldName: 'annualInvestment'
+            fieldName: ANNUAL_INVESTMENT_FIELD_NAME
         }
     ],
     [
         {
             label: 'Expected Return',
-            fieldName: 'expectedReturn'
+            fieldName: EXPECTED_RETURN_FIELD_NAME
         },
         {
-            label: 'Initial Investment',
-            fieldName: 'duration'
+            label: 'Duration',
+            fieldName: DURATION_FIELD_NAME
         }
     ]
 ]
 
 export default function UserInput () {
     const [userInput, setUserInput] = useState({
-        initialInvestment: 10000,
-        annualInvestment: 1200,
-        expectedReturn: 6,
-        duration: 10
+        [INITIAL_INVESTMENT_FIELD_NAME]: 10000,
+        [ANNUAL_INVESTMENT_FIELD_NAME]: 1200,
+        [EXPECTED_RETURN_FIELD_NAME]: 6,
+        [DURATION_FIELD_NAME]: 10
     });
 
     function handleChange(fieldName, newValue) {
