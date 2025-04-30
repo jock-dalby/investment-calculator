@@ -1,9 +1,4 @@
-import {useState} from 'react';
-
-const INITIAL_INVESTMENT_FIELD_NAME = 'initialInvestment'
-const ANNUAL_INVESTMENT_FIELD_NAME = 'annualInvestment'
-const EXPECTED_RETURN_FIELD_NAME = 'expectedReturn'
-const DURATION_FIELD_NAME = 'duration'
+import { INITIAL_INVESTMENT_FIELD_NAME, ANNUAL_INVESTMENT_FIELD_NAME, EXPECTED_RETURN_FIELD_NAME, DURATION_FIELD_NAME } from '../util/fieldNames.js'
 
 const INPUT_GROUPS = [
     [
@@ -28,30 +23,14 @@ const INPUT_GROUPS = [
     ]
 ]
 
-export default function UserInput () {
-    const [userInput, setUserInput] = useState({
-        [INITIAL_INVESTMENT_FIELD_NAME]: 10000,
-        [ANNUAL_INVESTMENT_FIELD_NAME]: 1200,
-        [EXPECTED_RETURN_FIELD_NAME]: 6,
-        [DURATION_FIELD_NAME]: 10
-    });
-
-    function handleChange(fieldName, newValue) {
-        setUserInput(prev => {
-            return {
-                ...prev,
-                [fieldName]: newValue
-            }
-        })
-    }
-
+export default function UserInput ({userInput, onInputChange}) {
     return <section id="user-input">
         {INPUT_GROUPS.map((group, groupIndex) => {
             return <div className="input-group" key={groupIndex}>
                 {group.map(({fieldName, label}, fieldIndex) => {
                     return <p key={`${groupIndex}-${fieldIndex}`}>
                     <label>{label}</label>
-                    <input type="number" required value={userInput[fieldName]} onChange={e => handleChange(fieldName, e.target.value)}/>
+                    <input type="number" required value={userInput[fieldName]} onChange={e => onInputChange(fieldName, e.target.value)}/>
                 </p>
                 })}
             </div>
