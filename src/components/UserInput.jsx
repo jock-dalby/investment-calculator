@@ -30,7 +30,7 @@ export default function UserInput ({userInput, onInputChange}) {
                 {group.map(({fieldName, label}, fieldIndex) => {
                     return <p key={`${groupIndex}-${fieldIndex}`}>
                     <label>{label}</label>
-                    <input type="number" required value={userInput[fieldName]} onChange={e => onInputChange(fieldName, e.target.value)}/>
+                    <input type="number" required value={userInput[fieldName]} onChange={e => onInputChange(fieldName, +e.target.value)}/>
                 </p>
                 })}
             </div>
